@@ -63,11 +63,18 @@
             display: block;
             width: 80%;
             max-width: 800px;
+            position: relative;
         }
 
         .modal-content img {
             width: 100%;
             height: auto;
+        }
+
+        .modal-content p {
+            color: #fff;
+            text-align: center;
+            margin-top: 10px;
         }
 
         .close {
@@ -95,35 +102,40 @@
         <h1>CyberpunkVan Art Showcase</h1>
     </header>
     <div class="container">
-        <div class="artwork" onclick="openModal('assets/img/face.gif')">
+        <div class="artwork" onclick="openModal('assets/img/face.gif', 'A face image')">
             <img src="assets/img/face.gif" alt="face">
         </div>
-        <div class="artwork" onclick="openModal('assets/img/van.gif')">
+        <div class="artwork" onclick="openModal('assets/img/van.gif', 'A van image')">
             <img src="assets/img/van.gif" alt="van">
         </div>
-        <div class="artwork" onclick="openModal('assets/img/pic1.jpg')">
+        <div class="artwork" onclick="openModal('assets/img/pic1.jpg', 'CyberpunkVan 1')">
             <img src="assets/img/pic1.jpg" alt="CyberpunkVan 1">
         </div>
-        <div class="artwork" onclick="openModal('assets/img/pic2.jpg')">
+        <div class="artwork" onclick="openModal('assets/img/pic2.jpg', 'CyberpunkVan 2')">
             <img src="assets/img/pic2.jpg" alt="CyberpunkVan 2">
         </div>
-        <div class="artwork" onclick="openModal('assets/img/pic3.jpg')">
+        <div class="artwork" onclick="openModal('assets/img/pic3.jpg', 'CyberpunkVan 3')">
             <img src="assets/img/pic3.jpg" alt="CyberpunkVan 3">
         </div>
     </div>
     <div id="myModal" class="modal">
         <span class="close" onclick="closeModal()">&times;</span>
-        <img class="modal-content" id="modalImg" src="">
+        <div class="modal-content">
+            <img id="modalImg" src="">
+            <p id="modalDesc"></p>
+        </div>
     </div>
     <footer>
         <p>&copy; 2024 CyberpunkVan Art. All rights reserved.</p>
     </footer>
     <script>
-        function openModal(imageSrc) {
+        function openModal(imageSrc, description) {
             var modal = document.getElementById('myModal');
             var modalImg = document.getElementById('modalImg');
+            var modalDesc = document.getElementById('modalDesc');
             modal.style.display = 'block';
             modalImg.src = imageSrc;
+            modalDesc.textContent = description;
         }
 
         function closeModal() {
