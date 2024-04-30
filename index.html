@@ -86,6 +86,20 @@
             cursor: pointer;
         }
 
+        .refresh-button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
         footer {
             text-align: center;
             background-color: #333;
@@ -103,19 +117,19 @@
     </header>
     <div class="container">
         <div class="artwork" onclick="openModal('assets/img/face.gif', 'Face 001')">
-            <img src="assets/img/face.gif" alt="face">
+            <img src="assets/img/face.gif" alt="Face 001">
         </div>
-        <div class="artwork" onclick="openModal('assets/img/van.gif', 'Dals Emotions 002')">
-            <img src="assets/img/van.gif" alt="van">
+        <div class="artwork" onclick="openModal('assets/img/van.gif', 'Dals Emotion 001')">
+            <img src="assets/img/van.gif" alt="Dals Emotion 001">
         </div>
         <div class="artwork" onclick="openModal('assets/img/pic1.jpeg', 'CyberpunkVan 001')">
-            <img src="assets/img/pic1.jpeg" alt="CyberpunkVan 1">
+            <img src="assets/img/pic1.jpeg" alt="CyberpunkVan 001">
         </div>
         <div class="artwork" onclick="openModal('assets/img/pic2.jpeg', 'CyberpunkVan 002')">
-            <img src="assets/img/pic2.jpeg" alt="CyberpunkVan 2">
+            <img src="assets/img/pic2.jpeg" alt="CyberpunkVan 002">
         </div>
         <div class="artwork" onclick="openModal('assets/img/pic3.jpeg', 'CyberpunkVan 003')">
-            <img src="assets/img/pic3.jpeg" alt="CyberpunkVan 3">
+            <img src="assets/img/pic3.jpeg" alt="CyberpunkVan 003">
         </div>
     </div>
     <div id="myModal" class="modal">
@@ -123,25 +137,10 @@
         <div class="modal-content">
             <img id="modalImg" src="">
             <p id="modalDesc"></p>
+            <button class="refresh-button" onclick="refreshImage()">Refresh Animation</button>
         </div>
     </div>
     <footer>
         <p>&copy; 2024 CyberpunkVan Art. All rights reserved.</p>
     </footer>
-    <script>
-        function openModal(imageSrc, description) {
-            var modal = document.getElementById('myModal');
-            var modalImg = document.getElementById('modalImg');
-            var modalDesc = document.getElementById('modalDesc');
-            modal.style.display = 'block';
-            modalImg.src = imageSrc;
-            modalDesc.textContent = description;
-        }
-
-        function closeModal() {
-            var modal = document.getElementById('myModal');
-            modal.style.display = 'none';
-        }
-    </script>
-</body>
-</html>
+    <
