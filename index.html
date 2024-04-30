@@ -10,8 +10,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #000;
-            color: #fff;
+            background-color: #f5f5f5;
         }
 
         header {
@@ -23,23 +22,52 @@
         h1 {
             margin: 0;
             font-size: 36px;
+            color: #fff;
         }
 
         .container {
             max-width: 1200px;
             margin: 20px auto;
             padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .artwork {
-            margin-bottom: 20px;
+            margin: 10px;
+            cursor: pointer;
         }
 
         .artwork img {
-            max-width: 100%;
+            max-width: 150px;
             height: auto;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.9);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            margin: auto;
             display: block;
-            margin: 0 auto;
+            width: 80%;
+            max-width: 800px;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: auto;
         }
 
         footer {
@@ -58,24 +86,41 @@
         <h1>CyberpunkVan Art Showcase</h1>
     </header>
     <div class="container">
-        <div class="artwork">
+        <div class="artwork" onclick="openModal('assets/img/face.gif')">
             <img src="assets/img/face.gif" alt="face">
         </div>
-        <div class="artwork">
+        <div class="artwork" onclick="openModal('assets/img/van.gif')">
             <img src="assets/img/van.gif" alt="van">
         </div>
-        <div class="artwork">
+        <div class="artwork" onclick="openModal('assets/img/pic1.jpg')">
             <img src="assets/img/pic1.jpg" alt="CyberpunkVan 1">
         </div>
-        <div class="artwork">
+        <div class="artwork" onclick="openModal('assets/img/pic2.jpg')">
             <img src="assets/img/pic2.jpg" alt="CyberpunkVan 2">
         </div>
-        <div class="artwork">
+        <div class="artwork" onclick="openModal('assets/img/pic3.jpg')">
             <img src="assets/img/pic3.jpg" alt="CyberpunkVan 3">
         </div>
+    </div>
+    <div id="myModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImg" src="">
     </div>
     <footer>
         <p>&copy; 2024 CyberpunkVan Art. All rights reserved.</p>
     </footer>
+    <script>
+        function openModal(imageSrc) {
+            var modal = document.getElementById('myModal');
+            var modalImg = document.getElementById('modalImg');
+            modal.style.display = 'block';
+            modalImg.src = imageSrc;
+        }
+
+        function closeModal() {
+            var modal = document.getElementById('myModal');
+            modal.style.display = 'none';
+        }
+    </script>
 </body>
 </html>
