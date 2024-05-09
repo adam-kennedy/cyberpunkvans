@@ -110,12 +110,30 @@
             bottom: 0;
             width: 100%;
         }
+
+        .connect-wallet-button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            display: block;
+            margin: 20px auto;
+        }
     </style>
 </head>
 <body>
     <header>
         <h1>CyberpunkVan Art</h1>
     </header>
+    <button class="connect-wallet-button" onclick="connectWallet()">Connect Wallet</button>
+
     <div class="container">
         <div class="artwork" onclick="openModal('assets/img/face.gif', 'Dal\'s Face')">
             <img src="assets/img/face.gif" alt="face">
@@ -216,6 +234,19 @@
             setTimeout(function() {
                 modalImg.src = src;
             }, 0);
+        }
+        function connectWallet() {
+            if (window.ckb) {
+                const ckb = window.ckb;
+                ckb.connect().then(() => {
+                    console.log('Joy Wallet connected successfully.');
+                    // Display wallet address or perform other actions upon successful connection
+                }).catch((error) => {
+                    console.error('Error connecting to Joy Wallet:', error);
+                });
+            } else {
+                console.log('Joy Wallet SDK not found. Please make sure you are using the correct library.');
+            }
         }
     </script>
 </body>
