@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JoyID Wallet Connection</title>
+</head>
+<body>
+  <h1>JoyID Wallet Connection</h1>
+  <div id="app"></div>
+  <script src="https://cdn.jsdelivr.net/npm/react/umd/react.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom/umd/react-dom.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@joyid/ckb/dist/ckb.min.js"></script>
+  <script>
+    const { useState, useEffect } = React;
+
+    function App() {
+      const [connected, setConnected] = useState(false);
+
+      useEffect(() => {
+        const checkConnection = async () => {
+          try {
+            const joyId = new window.JoyIDCKB();
+            await joyId.connect();
+            setConnected(true);
+          } catch (error) {
+            console.error(error);
+          }
+        };
+
+        checkConnection();
+      }, []);
+
+      return (
+        <div>
+          {connected ? (
+            <p>Connected to JoyID Wallet!</p>
+          ) : (
+            <button onClick={async () => {
+              try {
+                const joyId = new window.JoyIDCKB();
+                await joyId.connect();
+                setConnected(true);
+              } catch (error) {
+                console.error(error);
+              }
+            }}>Connect to JoyID Wallet</button>
+          )}
+        </div>
+      );
+    }
+
+    ReactDOM.render(<App />, document.getElementById('app'));
+  </script>
+</body>
+</html>
