@@ -8,11 +8,11 @@
 </head>
 <body>
   <h1>JoyID Wallet Connection</h1>
-  <div id="app"></div>
+  <div id="root"></div>
   <script src="https://cdn.jsdelivr.net/npm/react/umd/react.production.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/react-dom/umd/react-dom.production.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@joyid/ckb/dist/ckb.min.js"></script>
-  <script>
+  <script type="module">
     const { useState, useEffect } = React;
 
     function App() {
@@ -32,26 +32,32 @@
         checkConnection();
       }, []);
 
+      const onConnect = async () => {
+        try {
+          const authData = await window.JoyIDCKB.connect();
+          console.log(`JoyID user info:`, authData);
+          setConnected(true);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+
       return (
         <div>
           {connected ? (
             <p>Connected to JoyID Wallet!</p>
           ) : (
-            <button onClick={async () => {
-              try {
-                const joyId = new window.JoyIDCKB();
-                await joyId.connect();
-                setConnected(true);
-              } catch (error) {
-                console.error(error);
-              }
-            }}>Connect to JoyID Wallet</button>
+            <button onClick={onConnect}>Connect to JoyID Wallet</button>
           )}
         </div>
       );
     }
 
-    ReactDOM.render(<App />, document.getElementById('app'));
+    ReactDOM.createRoot(document.getElementById('root')).render(
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    );
   </script>
 </body>
 </html>
