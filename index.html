@@ -147,7 +147,48 @@
     <footer>
         <p>&copy; 2024 CyberpunkVan Art. All rights reserved.</p>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@nervosnetwork/ckb-sdk-core"></script>
     <script>
+        window.addEventListener('load', async () => {
+            if (window.ckb) {
+                const ckb = window.ckb;
+                try {
+                    const isConnected = await ckb.isConnected();
+                    if (!isConnected) {
+                        console.log('Joy Wallet is not connected.');
+                        return;
+                    }
+
+                    const address = await ckb.loadSecp256k1Dep();
+                    document.getElementById('walletAddress').textContent = `Connected with address: ${address}`;
+                } catch (error) {
+                    console.error(error);
+                }
+            } else {
+                console.log('Joy Wallet SDK not found. Please make sure you are using the correct library.');
+            }
+        });
+
+        document.getElementById('connectWalletButton').addEventListener('click', async () => {
+            if (window.ckb) {
+                const ckb = window.ckb;
+                try {
+                    const isConnected = await ckb.isConnected();
+                    if (!isConnected) {
+                        console.log('Joy Wallet is not connected.');
+                        return;
+                    }
+
+                    const address = await ckb.loadSecp256k1Dep();
+                    document.getElementById('walletAddress').textContent = `Connected with address: ${address}`;
+                } catch (error) {
+                    console.error(error);
+                }
+            } else {
+                console.log('Joy Wallet SDK not found. Please make sure you are using the correct library.');
+            }
+        });
+
         function openModal(imageSrc, description) {
             var modal = document.getElementById('myModal');
             var modalImg = document.getElementById('modalImg');
