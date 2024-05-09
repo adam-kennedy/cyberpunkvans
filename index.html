@@ -166,6 +166,7 @@
         <p>&copy; 2024 CyberpunkVan Art. All rights reserved.</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/@nervosnetwork/ckb-sdk-core"></script>
+    <script src="https://cdn.jsdelivr.net/npm/joy-wallet"></script>
     <script>
         window.addEventListener('load', async () => {
             if (window.ckb) {
@@ -238,14 +239,19 @@
         function connectWallet() {
             if (window.ckb) {
                 const ckb = window.ckb;
-                ckb.connect().then(() => {
-                    console.log('Joy Wallet connected successfully.');
-                    // Display wallet address or perform other actions upon successful connection
-                }).catch((error) => {
-                    console.error('Error connecting to Joy Wallet:', error);
-                });
+                try {
+                    const joyWallet = new JoyWallet();
+                    joyWallet.connect().then(() => {
+                        console.log('Joy Wallet connected successfully.');
+                        // Display wallet address or perform other actions upon successful connection
+                    }).catch((error) => {
+                        console.error('Error connecting to Joy Wallet:', error);
+                    });
+                } catch (error) {
+                    console.error('Joy Wallet SDK not found. Please make sure you are using the correct library.');
+                }
             } else {
-                console.log('Joy Wallet SDK not found. Please make sure you are using the correct library.');
+                console.log('CKB SDK not found. Please make sure you are using the correct library.');
             }
         }
     </script>
